@@ -1,0 +1,350 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,300;1,6..12,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,600;1,6..12,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,800;1,6..12,800&display=swap');
+
+:root {
+    /* Dark Theme */
+    --dark-elements: hsl(209, 23%, 22%);
+    --dark-background: hsl(207, 26%, 17%);
+    --dark-text: hsl(0, 0%, 100%);
+
+    /* Light Theme */
+    --light-text: hsl(200, 15%, 8%);
+    --light-input: hsl(0, 0%, 52%);
+    --light-background: hsl(0, 0%, 98%);
+    --light-elements: hsl(0, 0%, 100%);
+
+    /* Common */
+    --common-white: hsl(0, 0%, 100%);
+}
+
+[data-theme="dark"] {
+    --background-color: var(--dark-background);
+    --text-color: var(--dark-text);
+    --element-color: var(--dark-elements);
+    --shadow-color: var(--dark-elements);
+}
+
+[data-theme="light"] {
+    --background-color: var(--light-background);
+    --text-color: var(--light-text);
+    --element-color: var(--light-elements);
+    --shadow-color: var(--light-input);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    font-family: 'Nunito Sans', sans-serif;
+    background-color: transparent;
+    border: none;
+    color: var(--text-color);
+    text-decoration: none;
+    list-style: none;
+    cursor: default;
+}
+
+body::-webkit-scrollbar {
+    width: 0;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+
+/* index.astro */
+main {
+    padding: 2rem 0;
+    gap: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: auto;
+    max-width: min(75rem, 90vw);
+    width: 100%;
+    padding: 0 1rem;
+}
+
+
+/* [ccn3].astro */
+.containter-info {
+    max-width: 75rem;
+    width: auto;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 0 1rem;
+}
+
+.back-btn {
+    background-color: var(--element-color);
+    border-radius: 4px;
+    width: 8rem;
+    height: 2rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 4px var(--shadow-color);
+}
+
+button * {
+    cursor: pointer;
+}
+
+.country-data {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    margin: auto;
+}
+
+.container-flag {
+    display: flex;
+    flex-grow: 1;
+    margin: auto;
+    justify-content: center;
+}
+
+.country-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex-grow: 2;
+}
+
+.tittle {
+    font-size: 2rem;
+}
+
+.container-details {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 1rem;
+    padding: 0 0 1rem 0;
+    margin: auto;
+}
+
+.details {
+    flex-grow: 1;
+    max-width: 20rem;
+    line-height: 2rem;
+}
+
+.border-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    max-width: 40rem;
+}
+
+.list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.border-country {
+    background-color: var(--element-color);
+    padding: 0.25rem 2rem;
+    width: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0px 0px 4px var(--shadow-color);
+}
+
+
+/* Menu.astro */
+.dropdown {
+    cursor: pointer;
+}
+
+.dropdownContainer {
+    display: inline;
+    position: relative;
+    max-width: 12.5rem;
+    width: 100%;
+    box-shadow: 0px 0px 4px var(--shadow-color);
+}
+
+
+.dropdownButton {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--element-color);
+    color: var(--text-color);
+    padding: 1rem 1.5rem;
+    border-radius: 0.25rem;
+    width: 100%;
+}
+
+
+.dropdown-menu {
+    display: none;
+    box-shadow: 0px 0px 4px var(--shadow-color);
+}
+
+.dropdown-menu-item {
+    max-width: 15rem;
+    padding-left: 1.5rem;
+    margin: 0.5rem 0;
+}
+
+.dropdown-menu-item {
+    max-width: 15rem;
+    padding-left: 1.5rem;
+    margin: 0.5rem 0;
+}
+
+.dropdown-menu-show {
+    display: block;
+    position: absolute;
+    margin-top: 0.25rem;
+    padding: 0.5rem 0;
+    background-color: var(--element-color);
+    max-width: 15rem;
+    width: 100%;
+    border-radius: 0.25rem;
+    z-index: 5;
+    list-style: none;
+}
+
+
+/* Header.astro */
+header {
+    background-color: var(--element-color);
+    padding: 1.5rem 1rem;
+    box-shadow: 0 0 4px var(--shadow-color);
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    max-width: 75rem;
+    width: 100%;
+}
+
+.tittle {
+    font-size: clamp(1.05rem, calc(0.5rem + 2vw), 2.25rem);
+    font-weight: 700;
+    line-height: 1;
+    text-align: left;
+}
+
+.switchl {
+    font-size: 1rem;
+    line-height: 1;
+    text-align: right;
+    width: fit-content;
+}
+
+.top * {
+    cursor: pointer;
+}
+
+
+/* Country.astro */
+.countrys {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-self: center;
+    gap: 1.5rem;
+    max-width: 75rem;
+    padding: 0 1rem;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+}
+
+
+/* Card.astro */
+.card {
+    border-radius: 0.5rem;
+    width: 280px;
+    background-color: var(--element-color);
+    box-shadow: 0px 0px 4px var(--shadow-color);
+}
+
+.card-flag {
+    height: 160px;
+    width: 100%;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.country_description {
+    padding: 0 2rem;
+}
+
+.Country_Name {
+    margin-bottom: 1rem;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3rem;
+    gap: 0.25rem;
+}
+
+.card,
+.card * {
+    cursor: pointer;
+}
+
+
+/* Browser.astro */
+.searchBrowser {
+    max-width: min(25rem, calc(100vw - 2rem));
+    width: 100%;
+    box-shadow: 0 0 4px var(--shadow-color);
+}
+
+.browser {
+    display: flex;
+    align-items: center;
+    background-color: var(--element-color);
+    padding: 1rem 1.5rem;
+    border-radius: 0.25rem;
+}
+
+.searchInput {
+    width: 100%;
+    margin-left: 1rem;
+}
+
+.searchInput::placeholder {
+    color: var(--text-color);
+    opacity: 0.5;
+}
+
+.searchInput:focus {
+    outline: none;
+}
+
+.searchInput:hover {
+    cursor: text;
+}

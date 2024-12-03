@@ -1,0 +1,72 @@
+<div class="dropdown dropdownContainer" id="showButton">
+  <button type="button" class="dropdown dropdownButton">
+    <span class="dropdown">Filter by Region</span>
+    <svg
+      class="dropdown"
+      data-testid="geist-icon"
+      height="16"
+      stroke-linejoin="round"
+      viewBox="0 0 16 16"
+      width="16"
+      style="color: currentcolor;"
+      ><path
+        class="dropdown"
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M14.0607 5.49999L13.5303 6.03032L8.7071 10.8535C8.31658 11.2441 7.68341 11.2441 7.29289 10.8535L2.46966 6.03032L1.93933 5.49999L2.99999 4.43933L3.53032 4.96966L7.99999 9.43933L12.4697 4.96966L13 4.43933L14.0607 5.49999Z"
+        fill="currentColor"
+      >
+      </path>
+    </svg>
+  </button>
+  <ul class="dropdown-menu" id="dropdown-menu">
+    <li class="dropdown dropdown-menu-item" id="Africa">
+      <a class="dropdown" href="#Africa">Africa</a>
+    </li>
+    <li class="dropdown dropdown-menu-item" id="America">
+      <a class="dropdown" href="#Americas">America</a>
+    </li>
+    <li class="dropdown dropdown-menu-item" id="Asia">
+      <a class="dropdown" href="#Asia">Asia</a>
+    </li>
+    <li class="dropdown dropdown-menu-item" id="Europe">
+      <a class="dropdown" href="#Europe">Europe</a>
+    </li>
+    <li class="dropdown dropdown-menu-item" id="Oceania">
+      <a class="dropdown" href="#Oceania">Oceania</a>
+    </li>
+  </ul>
+</div>
+
+<script>
+  document
+    .getElementById("showButton")
+    .addEventListener("click", () =>
+      document
+        .getElementById("dropdown-menu")
+        .classList.toggle("dropdown-menu-show")
+    );
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const dropdown = document.querySelectorAll(".dropdown-menu a");
+    const cards = document.querySelectorAll(".card");
+
+    dropdown.forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        const region = link.getAttribute("href").substring(1);
+
+        cards.forEach((card) => {
+          const cardRegion = card.querySelector("div").className;
+
+          if (cardRegion === region) {
+            card.style.display = "block";
+          } else {
+            card.style.display = "none";
+          }
+        });
+      });
+    });
+  });
+</script>

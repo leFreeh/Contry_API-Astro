@@ -1,0 +1,28 @@
+---
+export interface Country {
+  id: string;
+  flag: string;
+  name: string;
+  population: number;
+  region: string;
+  capital: string;
+}
+
+const { id, flag, name, population, region, capital } = Astro.props;
+---
+
+<div id={id} class="card">
+  <a href={`/countries/${id}`} class="card">
+    <div class={region}>
+      <img class="card-flag" src={flag} alt={`Flag of ${name}`} />
+      <div class="country_description">
+        <h3 class="Country_Name">{name}</h3>
+        <div class="info">
+          <p><b>Population: </b>{population.toLocaleString()}</p>
+          <p><b>Region: </b>{region}</p>
+          <p><b>Capital: </b>{capital}</p>
+        </div>
+      </div>
+    </div>
+  </a>
+</div>

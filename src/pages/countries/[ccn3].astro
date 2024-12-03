@@ -1,0 +1,104 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { API, getCountryDetails } from "../../components/CountryData.js";
+
+export async function getStaticPaths() {
+  const countries = await API();
+  const validCountries = countries.filter((country) => country.ccn3);
+
+  return validCountries.map((country) => ({
+    params: { ccn3: country.ccn3 },
+  }));
+}
+
+const { ccn3 } = Astro.params;
+const country = await getCountryDetails(ccn3);
+---
+
+<Layout>
+  <div class="containter-info">
+    <button>
+      <a href="/" class="back-btn">
+        <svg
+          class="dropdown"
+          data-testid="geist-icon"
+          height="16"
+          stroke-linejoin="round"
+          viewBox="0 0 16 16"
+          width="16"
+          style="color: currentcolor;"
+          ><path
+            class="dropdown"
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M14.0607 5.49999L13.5303 6.03032L8.7071 10.8535C8.31658 11.2441 7.68341 11.2441 7.29289 10.8535L2.46966 6.03032L1.93933 5.49999L2.99999 4.43933L3.53032 4.96966L7.99999 9.43933L12.4697 4.96966L13 4.43933L14.0607 5.49999Z"
+            fill="currentColor"
+          >
+          </path>
+        </svg>
+        <span>Back</span>
+      </a>
+    </button>
+
+    <div class="country-data">
+      <div class="container-flag">
+        <img class="flag" src={country.flag} alt={`Flag of ${country.name}`} />
+      </div>
+      <div class="country-details">
+        <h1 class="tittle">{country.name}</h1>
+        <div class="container-details">
+          <div class="details">
+            <p><b>Native Name: </b>{country.official}</p>
+            <p><b>Population: </b> {country.population.toLocaleString()}</p>
+            <p><b>Region: </b> {country.region}</p>
+            <p><b>Sub Region: </b> {country.subregion}</p>
+            <p><b>Capital: </b> {country.capital}</p>
+          </div>
+          <div class="details">
+            <p><b>Top Level Domain: </b> {country.domain}</p>
+            <p>
+              <b>Currencies:</b>
+              {Object.values(country.currencies)[0]?.name}
+            </p>
+            <p>
+              <b>Languages:</b>
+              {Object.values(country.languages).join(", ")}
+            </p>
+          </div>
+        </div>
+        <div class="border-list">
+          <p><b>Border Countries:</b></p>
+          <div class="list">
+            {
+              country.borders?.map((border) => (
+                <a href="#" class="border-country" data-cca3={border}>
+                  {border}
+                </a>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  import { getCcn3FromCca3 } from "../../components/CountryData.js";
+
+  document.addEventListener("click", async (event) => {
+    if (event.target.classList.contains("border-country")) {
+      event.preventDefault();
+      const cca3 = event.target.getAttribute("data-cca3");
+      if (!cca3) return;
+
+      const ccn3 = await getCcn3FromCca3(cca3);
+      if (ccn3) {
+        window.location.href = `/countries/${ccn3}`;
+      } else {
+        console.error(`No se encontró un país con el código ${cca3}`);
+        alert("El país seleccionado no está disponible.");
+      }
+    }
+  });
+</script>

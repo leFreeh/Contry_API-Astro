@@ -1,0 +1,25 @@
+---
+import Card from "../components/Card.astro";
+import { API } from "../components/CountryData.js";
+
+const countries = await API();
+---
+
+<div class="countrys">
+  {
+    countries.map((country) =>
+      country ? (
+        <Card
+          id={country.ccn3}
+          flag={country.flags.png}
+          name={country.name.common}
+          population={country.population}
+          region={country.region}
+          capital={country.capital ? country.capital[0] : "No capital"}
+        />
+      ) : (
+        <div class="error">Country not found</div>
+      )
+    )
+  }
+</div>
