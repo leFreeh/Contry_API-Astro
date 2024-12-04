@@ -29,10 +29,9 @@ Link : https://contry-api-astro.vercel.app/
 
 Working with APIs
 
-Destructuring the Objects
-
 Responsive Design
 
 Color Combinations for Light And Dark Mode
+
 
 
